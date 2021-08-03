@@ -8,7 +8,7 @@ import com.ihs2code.hibernate.entity.Instructor;
 import com.ihs2code.hibernate.entity.Student;
 import com.ihs2code.hibernate.entity.User;
 
-public class CreateUserStudentDm {
+public class CreateUserStudentInstructorDm {
 
 	public static void main(String[] args) {
 
