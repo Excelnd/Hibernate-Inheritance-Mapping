@@ -4,17 +4,19 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import com.ihs2code.hibernate.entity.Status;
+import com.ihs2code.hibernate.entity.Instructor;
+import com.ihs2code.hibernate.entity.Student;
 import com.ihs2code.hibernate.entity.User;
 
-public class CreateStudentDm {
+public class CreateUserStudentDm {
 
 	public static void main(String[] args) {
 
 		// create session factory
 		SessionFactory factory = new Configuration()
 									.configure("hibernate.cfg.xml")
-									.addAnnotatedClass(User.class)
+									.addAnnotatedClass(Student.class)
+									.addAnnotatedClass(Instructor.class)
 									.buildSessionFactory();
 		
 		// create session
@@ -22,16 +24,16 @@ public class CreateStudentDm {
 		
 		try {
 			// create the object	
-			User tempStudent1  = new User("John", "Doe", "john@ihs2code.com", Status.ACTIVE);
-			User tempStudent2  = new User("Ihs", "Public", "ihs@ihs2code.com", Status.INACTIVE);
+			Student tempStudent  = new Student("John", "Doe", "john@ihs2code.com", "Hibernate");
+			Instructor tempInstructor  = new Instructor("Ihs", "Public", "ihs@ihs2code.com", 20000.00);
 		
 			// start a transaction
 			session.beginTransaction();
 			
 			// save the object
-			System.out.println("Saving the student... ");
-			session.save(tempStudent1);
-			session.save(tempStudent2);
+			System.out.println("Saving the students and Instructors ... ");
+			session.save(tempStudent);
+			session.save(tempInstructor);
 			
 			// commit the transaction
 			session.getTransaction().commit();
